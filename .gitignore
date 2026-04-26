@@ -1,0 +1,29 @@
+# Node.js
+node_modules/
+dist/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Rust
+target/
+
+# Tauri
+src-tauri/gen/schemas/
+
+# Configuration and Workspace
+.vscode/
+.idea/
+.claude/
+.gemini/
+.opencode/
+*.swp
+*.swo
+
+# OS and Assets
+.DS_Store
+Thumbs.db
+*.png
