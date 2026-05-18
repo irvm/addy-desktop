@@ -1,5 +1,7 @@
 # Addy Desktop
 
+![Addy Desktop Screenshot](assets/screenshot.png)
+
 A lightweight Linux desktop client for [addy.io](https://addy.io) (formerly AnonAddy), built with Tauri and React.
 
 ## About addy.io
