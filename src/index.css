@@ -1,11 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0f172a;
+  color-scheme: light;
+  
+  /* Color Hunt Palette: https://colorhunt.co/palette/9ed3dcfefd99fcb7c7ca6180 */
+  --bg-color: #fefd99; /* Light Yellow */
+  --blue-accent: #9ed3dc; /* Light Blue */
+  --pink-light: #fcb7c7; /* Light Pink */
+  --pink-dark: #ca6180; /* Dark Pink */
+  
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-border: rgba(202, 97, 128, 0.25);
+  --text-main: #2d3748;
+  --text-muted: #ca6180;
+  --accent-primary: #ca6180;
+  --accent-gradient: linear-gradient(135deg, #ca6180 0%, #fcb7c7 100%);
+  --success: #00a8cc; /* Darker blue derived from palette for better contrast */
+  --danger: #ca6180;
+
+  color: var(--text-main);
+  background-color: var(--bg-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,11 +31,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  background-color: var(--bg-color);
+}
+
 body {
   margin: 0;
   display: flex;
   min-width: 320px;
   min-height: 100vh;
+  /* Use colors from the palette for the background gradient */
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(158, 211, 220, 0.8), transparent 45%),
+    radial-gradient(circle at 85% 30%, rgba(252, 183, 199, 0.8), transparent 45%),
+    var(--bg-color);
 }
 
 #root {
@@ -26,60 +53,132 @@ body {
 
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1e293b;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  color: white;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-input {
-  background: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 8px;
-  padding: 0.6em 1.2em;
-  color: white;
+main {
   width: 100%;
 }
 
+button {
+  border-radius: 10px;
+  border: 1px solid rgba(202, 97, 128, 0.15);
+  padding: 0.6em 1.2em;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: inherit;
+  background-color: rgba(202, 97, 128, 0.1);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: var(--pink-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  backdrop-filter: blur(10px);
+}
+
+button:hover:not(:disabled) {
+  background-color: rgba(202, 97, 128, 0.2);
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.btn-primary {
+  background: var(--accent-gradient);
+  border: none;
+  box-shadow: 0 4px 14px 0 rgba(202, 97, 128, 0.3);
+  color: white;
+}
+
+button.btn-primary:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(202, 97, 128, 0.4);
+  background: linear-gradient(135deg, #ca6180 0%, #ca6180 100%);
+}
+
+input, select {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 0.75em 1.2em;
+  color: var(--text-main);
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(202, 97, 128, 0.2);
+}
+
 .card {
-  background: #1e293b;
-  border-radius: 12px;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
   padding: 1.5rem;
-  border: 1px solid #334155;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 8px 32px 0 rgba(202, 97, 128, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px 0 rgba(202, 97, 128, 0.15);
+  border-color: rgba(202, 97, 128, 0.4);
 }
 
 .container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem;
+  width: 100%;
 }
 
+/* Utility classes */
 .flex { display: flex; }
 .flex-col { flex-direction: column; }
 .gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
 .gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
 .items-center { align-items: center; }
 .justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.mb-2 { margin-bottom: 0.5rem; }
 .mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
 .mt-4 { margin-top: 1rem; }
 .text-sm { font-size: 0.875rem; }
-.text-gray { color: #94a3b8; }
+.text-gray { color: var(--text-muted); }
+.font-semibold { font-weight: 600; }
+.text-center { text-align: center; }
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+}
 
 @keyframes spin {
   from { transform: rotate(0deg); }
@@ -89,27 +188,25 @@ input {
   animation: spin 1s linear infinite;
 }
 
-/* Force select appearance to be consistent and high-contrast */
-select {
-  background-color: #0f172a !important;
-  color: white !important;
-  border: 1px solid #334155 !important;
-  border-radius: 12px;
-  padding: 0.8rem;
-  font-size: 1rem;
-  outline: none;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 100%;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1em;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
 }
 
-select option {
-  background-color: #1e293b;
-  color: white;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(202, 97, 128, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(202, 97, 128, 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(202, 97, 128, 0.4);
 }
